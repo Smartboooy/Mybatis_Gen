@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+    <!--
+        数据库驱动jar
+            通过在pom.xml中指定mybatis-generator-maven-plugin插件的jdbc驱动依赖,就不需要下面的配置
+    -->
+    <!--
+        <classPathEntry location="${user.home}/java/mysql-connector-java-6.0.5.jar" />
+    -->
+    <context id="DB2Tables" targetRuntime="MyBatis3">
+        <!-- 去除注释  -->
+        <commentGenerator>
+            <property name="suppressAllComments" value="true" />
+        </commentGenerator>
+        <!-- 数据库连接 -->
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+                        connectionURL="jdbc:mysql://127.0.0.1:3306/wpsc_calendar?useSSL=false"
+                        userId="root"
+                        password="root">
+        </jdbcConnection>
+        <javaTypeResolver >
+            <property name="forceBigDecimals" value="false" />
+        </javaTypeResolver>
+        <!--
+            targetPackage:
+                MyBatis Generator will create folders as required for the generated packages.
+            targetProject:
+                MyBatis Generator will not create this directory if it does not exist.
+                但是,使用Maven生成在target目录下，会自动创建:targetProject="MAVEN"
+         -->
+        <javaModelGenerator targetPackage="com.github.Smartboooy.calendar.core.model.pojo"
+                            targetProject="src/main/java">
+            <property name="enableSubPackages" value="true"/>
+            <property name="trimStrings" value="true"/>
+        </javaModelGenerator>
+        <!-- 生成SQLMAP文件 -->
+        <sqlMapGenerator targetPackage="mybatis.sqlmap.calendar"
+                         targetProject="src/main/resources">
+            <property name="enableSubPackages" value="true"/>
+        </sqlMapGenerator>
+        <!--
+            生成Dao文件
+                可以配置 type="XMLMAPPER"生成xml的dao实现
+                context id="DB2Tables" 修改targetRuntime="MyBatis3"
+
+            MIXEDMAPPER：生成的对象将是MyBatis 3.x映射程序基础架构的Java接口。
+                - 接口将基于注解和XML的混合。
+                - 注解将用于简单注解工作。
+                - 这个客户端不会生成Sql Provider，所以所有复杂的动态SQL都将以XML生成。 MIXEDMAPPER需要MyBatis 3.0.4或更高版本。
+        -->
+        <javaClientGenerator type="MIXEDMAPPER" targetPackage="com.github.Smartboooy.calendar.core.model.mapper"
+                             targetProject="src/main/java">
+            <property name="enableSubPackages" value="true"/>
+        </javaClientGenerator>
+        <!--对应数据库表 mysql可以加入主键自增 字段命名 忽略某字段等-->
+        <table tableName="wps_token" schema="calendar"/>
+    </context>
+</generatorConfiguration>
