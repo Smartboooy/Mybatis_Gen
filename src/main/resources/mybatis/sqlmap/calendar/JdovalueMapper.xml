@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.github.Smartboooy.calendar.core.model.mapper.WpsTokenMapper" >
-  <resultMap id="BaseResultMap" type="com.github.Smartboooy.calendar.core.model.pojo.WpsToken" >
-    <id column="id" property="id" jdbcType="BIGINT" />
-    <result column="userid" property="userid" jdbcType="BIGINT" />
-    <result column="appid" property="appid" jdbcType="VARCHAR" />
-    <result column="expires_in" property="expiresIn" jdbcType="BIGINT" />
-    <result column="access_token" property="accessToken" jdbcType="VARCHAR" />
-    <result column="refresh_token" property="refreshToken" jdbcType="VARCHAR" />
+<mapper namespace="com.github.ongz1992.calendar.core.model.mapper.JdovalueMapper" >
+  <resultMap id="BaseResultMap" type="com.github.ongz1992.calendar.core.model.pojo.Jdovalue" >
+    <id column="ID" property="id" jdbcType="VARCHAR" />
+    <id column="KEY" property="key" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.github.ongz1992.calendar.core.model.pojo.Jdovalue" extends="BaseResultMap" >
+    <result column="BYTES" property="bytes" jdbcType="LONGVARBINARY" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -68,15 +67,20 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, userid, appid, expires_in, access_token, refresh_token
+    ID, KEY
   </sql>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.github.Smartboooy.calendar.core.model.pojo.WpsTokenExample" >
+  <sql id="Blob_Column_List" >
+    BYTES
+  </sql>
+  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.github.ongz1992.calendar.core.model.pojo.JdovalueExample" >
     select
     <if test="distinct" >
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from wps_token
+    ,
+    <include refid="Blob_Column_List" />
+    from jdovalue
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
@@ -84,118 +88,99 @@
       order by ${orderByClause}
     </if>
   </select>
-  <delete id="deleteByExample" parameterType="com.github.Smartboooy.calendar.core.model.pojo.WpsTokenExample" >
-    delete from wps_token
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.github.ongz1992.calendar.core.model.pojo.JdovalueExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from jdovalue
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <delete id="deleteByExample" parameterType="com.github.ongz1992.calendar.core.model.pojo.JdovalueExample" >
+    delete from jdovalue
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insertSelective" parameterType="com.github.Smartboooy.calendar.core.model.pojo.WpsToken" >
-    insert into wps_token
+  <insert id="insertSelective" parameterType="com.github.ongz1992.calendar.core.model.pojo.Jdovalue" >
+    insert into jdovalue
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
-        id,
+        ID,
       </if>
-      <if test="userid != null" >
-        userid,
+      <if test="key != null" >
+        KEY,
       </if>
-      <if test="appid != null" >
-        appid,
-      </if>
-      <if test="expiresIn != null" >
-        expires_in,
-      </if>
-      <if test="accessToken != null" >
-        access_token,
-      </if>
-      <if test="refreshToken != null" >
-        refresh_token,
+      <if test="bytes != null" >
+        BYTES,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
-        #{id,jdbcType=BIGINT},
+        #{id,jdbcType=VARCHAR},
       </if>
-      <if test="userid != null" >
-        #{userid,jdbcType=BIGINT},
+      <if test="key != null" >
+        #{key,jdbcType=VARCHAR},
       </if>
-      <if test="appid != null" >
-        #{appid,jdbcType=VARCHAR},
-      </if>
-      <if test="expiresIn != null" >
-        #{expiresIn,jdbcType=BIGINT},
-      </if>
-      <if test="accessToken != null" >
-        #{accessToken,jdbcType=VARCHAR},
-      </if>
-      <if test="refreshToken != null" >
-        #{refreshToken,jdbcType=VARCHAR},
+      <if test="bytes != null" >
+        #{bytes,jdbcType=LONGVARBINARY},
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.github.Smartboooy.calendar.core.model.pojo.WpsTokenExample" resultType="java.lang.Integer" >
-    select count(*) from wps_token
+  <select id="countByExample" parameterType="com.github.ongz1992.calendar.core.model.pojo.JdovalueExample" resultType="java.lang.Integer" >
+    select count(*) from jdovalue
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map" >
-    update wps_token
+    update jdovalue
     <set >
       <if test="record.id != null" >
-        id = #{record.id,jdbcType=BIGINT},
+        ID = #{record.id,jdbcType=VARCHAR},
       </if>
-      <if test="record.userid != null" >
-        userid = #{record.userid,jdbcType=BIGINT},
+      <if test="record.key != null" >
+        KEY = #{record.key,jdbcType=VARCHAR},
       </if>
-      <if test="record.appid != null" >
-        appid = #{record.appid,jdbcType=VARCHAR},
-      </if>
-      <if test="record.expiresIn != null" >
-        expires_in = #{record.expiresIn,jdbcType=BIGINT},
-      </if>
-      <if test="record.accessToken != null" >
-        access_token = #{record.accessToken,jdbcType=VARCHAR},
-      </if>
-      <if test="record.refreshToken != null" >
-        refresh_token = #{record.refreshToken,jdbcType=VARCHAR},
+      <if test="record.bytes != null" >
+        BYTES = #{record.bytes,jdbcType=LONGVARBINARY},
       </if>
     </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map" >
+    update jdovalue
+    set ID = #{record.id,jdbcType=VARCHAR},
+      KEY = #{record.key,jdbcType=VARCHAR},
+      BYTES = #{record.bytes,jdbcType=LONGVARBINARY}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
   <update id="updateByExample" parameterType="map" >
-    update wps_token
-    set id = #{record.id,jdbcType=BIGINT},
-      userid = #{record.userid,jdbcType=BIGINT},
-      appid = #{record.appid,jdbcType=VARCHAR},
-      expires_in = #{record.expiresIn,jdbcType=BIGINT},
-      access_token = #{record.accessToken,jdbcType=VARCHAR},
-      refresh_token = #{record.refreshToken,jdbcType=VARCHAR}
+    update jdovalue
+    set ID = #{record.id,jdbcType=VARCHAR},
+      KEY = #{record.key,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.github.Smartboooy.calendar.core.model.pojo.WpsToken" >
-    update wps_token
+  <update id="updateByPrimaryKeySelective" parameterType="com.github.ongz1992.calendar.core.model.pojo.Jdovalue" >
+    update jdovalue
     <set >
-      <if test="userid != null" >
-        userid = #{userid,jdbcType=BIGINT},
-      </if>
-      <if test="appid != null" >
-        appid = #{appid,jdbcType=VARCHAR},
-      </if>
-      <if test="expiresIn != null" >
-        expires_in = #{expiresIn,jdbcType=BIGINT},
-      </if>
-      <if test="accessToken != null" >
-        access_token = #{accessToken,jdbcType=VARCHAR},
-      </if>
-      <if test="refreshToken != null" >
-        refresh_token = #{refreshToken,jdbcType=VARCHAR},
+      <if test="bytes != null" >
+        BYTES = #{bytes,jdbcType=LONGVARBINARY},
       </if>
     </set>
-    where id = #{id,jdbcType=BIGINT}
+    where ID = #{id,jdbcType=VARCHAR}
+      and KEY = #{key,jdbcType=VARCHAR}
   </update>
 </mapper>
