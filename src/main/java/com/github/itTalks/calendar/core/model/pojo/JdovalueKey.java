@@ -1,4 +1,4 @@
-package com.github.ongz1992.calendar.core.model.pojo;
+package com.github.itTalks.calendar.core.model.pojo;
 
 public class JdovalueKey {
     private String id;
