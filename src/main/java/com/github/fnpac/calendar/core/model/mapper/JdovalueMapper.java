@@ -1,8 +1,8 @@
-package com.github.itTalks.calendar.core.model.mapper;
+package com.github.fnpac.calendar.core.model.mapper;
 
-import com.github.itTalks.calendar.core.model.pojo.Jdovalue;
-import com.github.itTalks.calendar.core.model.pojo.JdovalueExample;
-import com.github.itTalks.calendar.core.model.pojo.JdovalueKey;
+import com.github.fnpac.calendar.core.model.pojo.Jdovalue;
+import com.github.fnpac.calendar.core.model.pojo.JdovalueExample;
+import com.github.fnpac.calendar.core.model.pojo.JdovalueKey;
 import java.util.List;
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;

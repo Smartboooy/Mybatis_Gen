@@ -1,4 +1,4 @@
-package com.github.itTalks.calendar.core.model.pojo;
+package com.github.fnpac.calendar.core.model.pojo;
 
 import java.util.ArrayList;
 import java.util.List;

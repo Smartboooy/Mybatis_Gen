@@ -32,7 +32,7 @@
                 MyBatis Generator will not create this directory if it does not exist.
                 但是,使用Maven生成在target目录下，会自动创建:targetProject="MAVEN"
          -->
-        <javaModelGenerator targetPackage="com.github.itTalks.calendar.core.model.pojo"
+        <javaModelGenerator targetPackage="com.github.fnpac.calendar.core.model.pojo"
                             targetProject="src/main/java">
             <property name="enableSubPackages" value="true"/>
             <property name="trimStrings" value="true"/>
@@ -52,7 +52,7 @@
                 - 注解将用于简单注解工作。
                 - 这个客户端不会生成Sql Provider，所以所有复杂的动态SQL都将以XML生成。 MIXEDMAPPER需要MyBatis 3.0.4或更高版本。
         -->
-        <javaClientGenerator type="MIXEDMAPPER" targetPackage="com.github.itTalks.calendar.core.model.mapper"
+        <javaClientGenerator type="MIXEDMAPPER" targetPackage="com.github.fnpac.calendar.core.model.mapper"
                              targetProject="src/main/java">
             <property name="enableSubPackages" value="true"/>
         </javaClientGenerator>

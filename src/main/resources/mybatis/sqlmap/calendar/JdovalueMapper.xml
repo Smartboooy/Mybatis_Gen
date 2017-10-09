@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.github.itTalks.calendar.core.model.mapper.JdovalueMapper" >
-  <resultMap id="BaseResultMap" type="com.github.itTalks.calendar.core.model.pojo.Jdovalue" >
+<mapper namespace="com.github.fnpac.calendar.core.model.mapper.JdovalueMapper" >
+  <resultMap id="BaseResultMap" type="com.github.fnpac.calendar.core.model.pojo.Jdovalue" >
     <id column="ID" property="id" jdbcType="VARCHAR" />
     <id column="KEY" property="key" jdbcType="VARCHAR" />
   </resultMap>
-  <resultMap id="ResultMapWithBLOBs" type="com.github.itTalks.calendar.core.model.pojo.Jdovalue" extends="BaseResultMap" >
+  <resultMap id="ResultMapWithBLOBs" type="com.github.fnpac.calendar.core.model.pojo.Jdovalue" extends="BaseResultMap" >
     <result column="BYTES" property="bytes" jdbcType="LONGVARBINARY" />
   </resultMap>
   <sql id="Example_Where_Clause" >
@@ -72,7 +72,7 @@
   <sql id="Blob_Column_List" >
     BYTES
   </sql>
-  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.github.itTalks.calendar.core.model.pojo.JdovalueExample" >
+  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.github.fnpac.calendar.core.model.pojo.JdovalueExample" >
     select
     <if test="distinct" >
       distinct
@@ -88,7 +88,7 @@
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.github.itTalks.calendar.core.model.pojo.JdovalueExample" >
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.github.fnpac.calendar.core.model.pojo.JdovalueExample" >
     select
     <if test="distinct" >
       distinct
@@ -102,13 +102,13 @@
       order by ${orderByClause}
     </if>
   </select>
-  <delete id="deleteByExample" parameterType="com.github.itTalks.calendar.core.model.pojo.JdovalueExample" >
+  <delete id="deleteByExample" parameterType="com.github.fnpac.calendar.core.model.pojo.JdovalueExample" >
     delete from jdovalue
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insertSelective" parameterType="com.github.itTalks.calendar.core.model.pojo.Jdovalue" >
+  <insert id="insertSelective" parameterType="com.github.fnpac.calendar.core.model.pojo.Jdovalue" >
     insert into jdovalue
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -133,7 +133,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.github.itTalks.calendar.core.model.pojo.JdovalueExample" resultType="java.lang.Integer" >
+  <select id="countByExample" parameterType="com.github.fnpac.calendar.core.model.pojo.JdovalueExample" resultType="java.lang.Integer" >
     select count(*) from jdovalue
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
@@ -173,7 +173,7 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.github.itTalks.calendar.core.model.pojo.Jdovalue" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.github.fnpac.calendar.core.model.pojo.Jdovalue" >
     update jdovalue
     <set >
       <if test="bytes != null" >
